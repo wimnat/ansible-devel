@@ -1,9 +1,3 @@
-[submodule "ansible-modules-extras"]
-	path = ansible-modules-extras
-	url = https://github.com/wimnat/ansible-modules-extras.git
-[submodule "ansible-modules-core"]
-	path = ansible-modules-core
-	url = https://github.com/wimnat/ansible-modules-core.git
 [submodule "ansible"]
 	path = ansible
 	url = https://github.com/wimnat/ansible.git
