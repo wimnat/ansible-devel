@@ -1,0 +1,25 @@
+- name: Test AWS playbook
+  hosts: local
+  connection: local
+  tasks:
+    - name: Create an IAM role with attached managed policies
+      iam_role:
+        name: "my-test-role"
+        assume_role_policy_document: "{{ lookup('file', 'files/iam_role_trust_policy_doc.json') }}"
+        managed_policy:
+          - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role
+        state: present
+      register: iam_role
+      tags:
+          - iam
+
+    - name: Attach a different managed policies to the previously created IAM role
+      iam_role:
+        name: "my-test-role"
+        assume_role_policy_document: "{{ lookup('file', 'files/iam_role_trust_policy_doc.json') }}"
+        managed_policy:
+          - arn:aws:iam::aws:policy/AdministratorAccess-Amplify
+        state: present
+      register: iam_role
+      tags:
+        - iam
